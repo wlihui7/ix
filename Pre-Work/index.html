@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pre-Work</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" contentcontent="width=device-width, intial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cutive+Mono|EB+Garamond|Poiret+One|Raleway&display=swap" rel="stylesheet">
+        <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
+        <script type="text/javascript" src="assets/javascript/main.js"></script>
+
+    </head>
+    <body id = "home">
+        <section class = "center">
+            <header class = "header">
+                Leah Wang
+            </header>
+            <section>
+                <main class = "main">
+                    <figure class = "figure">
+                        <img src="assets/img/me.jpg" alt="That's me"/>
+                    </figure>    
+                    <article>
+                        <h2 class="h2">About Me</h2>
+                        <p class>My name is Lihui Wang &ndash; I go Leah because that's usually easier to pronounce. 
+                            I'm a rising sophmore studying Computer Science at the University of Pennslyvania, 
+                            and live in a suburb about twenty minutes outside of Philly. 
+                            Other than coding, I also love to read and write, to meet new people, and to eat. 
+                            I'm most comfortable coding in Java, and have dabbled in other languages such as HTML, CSS, Javascript, and a functional language called OCaml. 
+                            Looking forward to meeting everyone in Portugal!
+                        </p> 
+                        <h4 class = "h4">GitHub</h4>
+                        <p>
+                            Github Username: wlihui7
+                        </p>
+                    </article>
+                </main>   
+            </section>
+            <section id="secondSection">
+                <form action="/action_page.php">
+                    <legend class="h4">Fun</legend>
+                    <p>Leave any comments for me below!</p>
+                    <span>(Click the checkbox when finished)</span>
+                    <input type="text" name="comments" id="comment" placeholder="Comment Here" oninput="displayComment();">
+                    <br>
+                    <span><i>Finished with Comment?</i></span>
+                    <input type = "checkbox" name="satisfaction" id="check" value="finished" onchange="displayComment();">Yes<br>
+                    <br>
+                    <span> <i>Good day?</i></span>
+                    <input type="radio" name="day" value="good"> Absolutely Outstanding<br>
+                    <input type="radio" name="day" value="okay"> Meh<br>
+                    <input type="radio" name="day" value="bad"> Horrible Horrible<br>
+                </form>
+                <article id="display">
+                    <h4 class = "h4"> Comments </h4>
+                    <p id="displayComments"></p>
+                </article>
+            </section>
+            <footer>
+            </footer>
+        </section>
+    </body>
+</html>
