@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Leah Wang
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-avatar class = "avatar">
+      <img src= "https://lh3.googleusercontent.com/KYbTbDZH1tRTf9PmZEyu3ixm10YiDf_whuHkRw8a7KVoHkCtlE19YWYL_-TX9otZ-dbUL-nt1k21ke6q_hPqb_vUjNKbVUXlQlxrHwI299H7M53-tFz7yrN5gPMpzOOxo7abQ4fKsilOmRQOX0HtznhtQwxblT8Qf9u0WmuFy0-1JdKrhNdnWpsXfXqIoL87RStGJDvOylWYrNxnNHxKxJpWKgZ6yYAFgmEG6EFUj4mPni1vJXnqN-xGgvjbRtbKH471n58YL5D2rj6bY_8iN-ErR4WaXmSJtZpzVq3uwQsdyYxnKVXYWGe3kcxFARSbuANAUq296z7MY5pZCyO-4-2PluSMhe1LDuU0TqjPWLMpkWd4u79duTfifIQ5fhPH05gG_rDGmek9hTF-PNUPlTDS8TjRiMiWFmb3m-LgeNeSb96KA2bzjiTtpPQDUdJpg4Hkz7Tf24kzevjbCxK5lXeejkCy78_zI_XgSSVRVmua7u3whNzNTRHmHntHDF_3UJm5PjPHN6yxN9AYv9-MYexUAtOypzCK14FsP75BwRSv6OsUmyFQUlB7QHnY4SQX2wj9kzZ7A3_7-7k6HerJVVnZH5CwPQl1NpQcsJh_wWbqzK8v8LqH0OPaKOPr116YwaTzhKCVQoUTDkuK5g8WAO3dxRQOB-1pGkQBRGurcN0Hi-oKpHKdeUWAkV4arDknN4ZBG0Q3RtzUuTUIXN-kChVm=w713-h950-no"/>
+    </ion-avatar>
+    <br>
+    <p>Sophmore at the University of Pennslyvania majoring in Computer Science. </p>
+  </div>
+  <ion-item>
+    <ion-label> Birth Date</ion-label>
+    <ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)]="myBirth"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary">Your Name</ion-label>
+    <ion-input type="text" placeholder="Enter Name Here"></ion-input>
+  </ion-item>
+  <br>
+  <ion-button shape="round" color="dark" (click)="presentAlertMultipleButtons()">Alert! Alert!</ion-button>
+  <ion-button shape="round" color="dark" (click)="presentToastWithOptions()">Let's Toast!</ion-button>
+</ion-content>
