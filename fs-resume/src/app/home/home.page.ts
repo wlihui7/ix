@@ -15,7 +15,7 @@ export class HomePage {
     this.myBirth = '2000-06-14';
   }
 
-  constructor(public alertController: AlertController, public toastController: ToastController) {}
+  constructor(private alertController: AlertController, private toastController: ToastController) {}
 
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
