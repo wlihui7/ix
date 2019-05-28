@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab"></ion-back-button>
+  </ion-buttons>  
+    <ion-title>
+      Trips
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3>No upcoming trips</h3>
+  <ion-text>Start exploring ideas for your next trip.</ion-text>
+  <ion-button color="dark" (click)="enterExplore()">Explore StairBnb</ion-button>
+  <ion-list> Your Trips
+    <ion-item (click)="enterRental()">
+      Lisbon, Portugal
+    </ion-item>
+  </ion-list>
+</ion-content>
