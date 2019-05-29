@@ -4,19 +4,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class = "login">
+<ion-content class = "background" color = "tertiary">
+  <form class = "form">
     <ion-item>
-      <ion-label color="primary">UserName: </ion-label>
+      <ion-label color="dark">UserName: </ion-label>
       <ion-input type="text" placeholder="Enter Username"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary">Password: </ion-label>
+      <ion-label color="dark">Password: </ion-label>
       <ion-input type="password" placeholder="Enter Password"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-button color="dark" (click)="enterExplore()">Enter</ion-button>
-      <ion-button color="dark" (click)="enterLogin()">Register</ion-button>
-    </ion-item>
-  </div>
+  </form>
+  <div class = "buttons">
+    <ion-button color="secondary" (click)="enterExplore()">Enter</ion-button>
+    <ion-button color="secondary" (click)="enterLogin()">Register</ion-button>
+    </div>
 </ion-content>

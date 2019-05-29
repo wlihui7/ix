@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Rental, User} from '../models';
 
 @Component({
   selector: 'app-rental',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalPage implements OnInit {
 
-  constructor() { }
+  public rental: Rental;
+  constructor() { 
+    this.rental = new Rental('Lisbon, Portugal');
+  }
 
   ngOnInit() {
   }

@@ -14,8 +14,8 @@
   <ion-text>Start exploring ideas for your next trip.</ion-text>
   <ion-button color="dark" (click)="enterExplore()">Explore StairBnb</ion-button>
   <ion-list> Your Trips
-    <ion-item (click)="enterRental()">
-      Lisbon, Portugal
+    <ion-item (click)="enterRental()" *ngFor="let rental of rentals">
+      {{rental.location}}
     </ion-item>
   </ion-list>
 </ion-content>
