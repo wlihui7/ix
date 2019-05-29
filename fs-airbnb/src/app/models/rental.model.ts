@@ -6,12 +6,13 @@ export class Rental {
     price: number;
     img: string;
     renter: User;
-    reveiws: Array<Review>;
+    reviews: Array<Review>;
 
     constructor(name: string, loc: string, price: number) {
         this.name = name;
         this.location = loc;
         this.price = price;
+        this.reviews = new Array<Review>();
     }
 
     addImg(link: string) {
@@ -23,6 +24,6 @@ export class Rental {
     }
 
     addReview(review: Review) {
-        this.reveiws.push(review);
+        this.reviews.push(review);
     }
 }

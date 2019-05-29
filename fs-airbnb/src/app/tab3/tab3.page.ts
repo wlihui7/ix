@@ -13,8 +13,8 @@ export class Tab3Page {
 
   constructor(private navCtrl: NavController) {
     this.rentals = new Array<Rental>();
-    let rental1 = new Rental('Lisbon, Portgual');
-    let rental2 = new Rental('Beijing, China');
+    let rental1 = new Rental('Back to Lisbon','Lisbon, Portgual', 100);
+    let rental2 = new Rental('Wang Fu Hotel', 'Beijing, China', 50);
     this.rentals.push(rental1);
     this.rentals.push(rental2);
   }

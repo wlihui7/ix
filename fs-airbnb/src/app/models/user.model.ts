@@ -3,6 +3,8 @@ import { Rental, Review, Message } from '../models';
 export class User {
     fName: string;
     lName: string;
+    username: string;
+    password: string;
     rentals: Array<Rental>;
     saved: Array<Rental>;
     reviews: Array<Review>;
@@ -13,6 +15,14 @@ export class User {
         this.rentals = new Array<Rental>();
         this.saved = new Array<Rental>();
         this.reviews = new Array<Review>();
+    }
+
+    setUserName(name: string) {
+        this.username = name;
+    }
+
+    setPassword(pass: string) {
+        this.password = this.password;
     }
 
     addRental(rental: Rental) {
