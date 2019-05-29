@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>StairBnb Provider</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class = "background" color = "tertiary">
+  <form class = "form">
+    <ion-item>
+      <ion-label color="dark">UserName: </ion-label>
+      <ion-input type="text" placeholder="Enter Username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="dark">Password: </ion-label>
+      <ion-input type="password" placeholder="Enter Password"></ion-input>
+    </ion-item>
+  </form>
+  <div class = "buttons">
+    <ion-button color="secondary" (click)="enterExplore()">Enter</ion-button>
+    <ion-button color="secondary" (click)="enterLogin()">Register</ion-button>
+    </div>
 </ion-content>

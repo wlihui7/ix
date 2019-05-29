@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Create New Rental
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <form class = "form">
+    <ion-item>
+      <ion-label color="primary">Rental Name</ion-label>
+      <ion-input clearInput="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Location</ion-label>
+      <ion-input clearInput="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Price</ion-label>
+      <ion-input clearInput="true" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Url of Image (Optional)</ion-label>
+      <ion-input type = "url"></ion-input>
+    </ion-item>
+  </form>
+  <ion-button color="secondary" (click)="createRental()">Create Rental</ion-button>
+</ion-content>
