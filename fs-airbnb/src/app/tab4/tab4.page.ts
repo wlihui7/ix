@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message, User } from '../models';
 
 @Component({
   selector: 'app-tab4',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab4Page implements OnInit {
 
-  constructor() { }
+  messages: Array<Message> = new Array<Message>();
+
+  constructor() {
+    const user1: User = new User('Leah', 'Wang');
+    const user2: User = new User('Anina', 'Ku');
+    const message1 = new Message(user2, user1, "I'm hungry");
+    const message2 = new Message(user1, user2, "Cool");
+
+    this.messages.push(message1, message2);
+   }
 
   ngOnInit() {
   }
-
+ 
 }

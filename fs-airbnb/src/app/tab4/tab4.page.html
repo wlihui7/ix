@@ -8,11 +8,12 @@
 </ion-header>
 
 <ion-content>
-    <ion-list> <h2>Messages/h2> 
+    <ion-list> <h2>Messages </h2> 
       <ion-item 
         *ngFor="let message of messages">
-        <b>{{message.sender}}</b>: 
+        <b>{{message.sender.fName}}</b>: 
         <br>
-        {{message.message}}
+        <ion-text slot="end">{{message.message}}</ion-text>
       </ion-item>
-    </ion-list></ion-content>
+    </ion-list>
+</ion-content>
