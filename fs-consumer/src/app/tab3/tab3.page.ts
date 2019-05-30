@@ -3,6 +3,7 @@ import { Rental } from '../models';
 import { NavController } from '@ionic/angular';
 import { PropertyBindingType } from '@angular/compiler';
 import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
+import { RentalService } from '../services/rental.service';
 
 @Component({
   selector: 'app-tab3',
@@ -11,25 +12,20 @@ import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller'
 })
 export class Tab3Page {
 
-  rentals: Array<Rental>;
+  rentals: Array<Rental> = [];
 
-  constructor(private navCtrl: NavController) {
-    this.rentals = new Array<Rental>();
-
-    const rental1 = new Rental('Back to Lisbon');
-    const rental2 = new Rental('Wang Fu Hotel');
-
-    this.rentals.push(rental1, rental2);
-
+  constructor(private navCtrl: NavController, private rentalService: RentalService) {
+    this.rentals = this.rentalService.getAllRentals();
   }
 
   navToRental(rental: Rental) {
     const navOptions: NavigationOptions = {
       queryParams: {
-        rentalName: rental.name
+        rentalName: rental.name,
+        rentalID: rental.id
       }
     };
-    this.navCtrl.navigateForward('rental-details', navOptions);
+    this.navCtrl.navigateForward('rentals-details', navOptions);
   }
 
 }

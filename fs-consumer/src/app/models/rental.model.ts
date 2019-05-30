@@ -1,10 +1,11 @@
 
 
 export class Rental {
+    id: number;
     name: string;
     rating: number;
 
-    constructor(name: string) {
-        this.name = '';
+    constructor() {
     }
+
 }

@@ -1,6 +1,7 @@
 import { User, Review } from '../models';
 
 export class Rental {
+    id: number;
     name: string;
     location: string;
     price: number;

@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tab"></ion-back-button>
-  </ion-buttons>  
+        <ion-back-button defaultHref="tab/tabs/tab1"></ion-back-button>
+      </ion-buttons>  
     <ion-title>
       Saved
     </ion-title>
@@ -10,7 +10,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-text>Sup</ion-text>
+    <ion-list> <h2>Your Saved Rentals</h2> 
+      <ion-item 
+        *ngFor="let rental of savedRentals"
+        (click)="enterRental(rental)" >
+        {{rental.name}}
+      </ion-item>
+    </ion-list>
   <div class="button">
     <ion-button color="dark" (click)="enterExplore()">Find Homes</ion-button>
   </div>

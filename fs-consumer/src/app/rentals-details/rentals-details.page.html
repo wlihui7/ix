@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>rentals-details</ion-title>
+    <ion-title *ngIf="currentRental">{{currentRental.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

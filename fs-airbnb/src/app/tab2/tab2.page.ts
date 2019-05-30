@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { RentalService } from '../services/rental.service';
+import { Rental } from '../models';
+import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 
 @Component({
   selector: 'app-tab2',
@@ -7,13 +10,24 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  constructor(private navCtrl: NavController) {}
+  savedRentals: Array<Rental>;
+  constructor(private navCtrl: NavController, private rentalServ: RentalService) {
+    this.savedRentals = this.rentalServ.getSavedRentals();
+  }
 
   ngOnInit() {
   }
 
   enterExplore() {
-    this.navCtrl.navigateForward('tab');
+    this.navCtrl.navigateForward('tab/tabs/tab1');
+  }
+
+  enterRental(rental: Rental) {
+    const navOptions: NavigationOptions = {
+      queryParams: {
+        rentalID: rental.id
+      }
+    };
+    this.navCtrl.navigateForward('rental', navOptions);
   }
 }

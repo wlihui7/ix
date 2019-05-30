@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tab"></ion-back-button>
   </ion-buttons>  
-    <ion-title>{{rental.name}} Details</ion-title>
+    <ion-title *ngIf="rental">{{rental.name}} Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,8 +13,8 @@
   <br>
   <ion-text><b>Price: </b> {{rental.price}}</ion-text>
   <br>
-  <ion-list>
-    <ion-item *ngFor="let review of rental.reviews">
+  <ion-list *ngIf="(rental.reviews)">
+    <ion-item  *ngFor="let review of rental.reviews">
       <ion-text><i>{{review.message}}</i></ion-text>
       <br>
       <ion-text slot = "end">{{review.reviewer.fName}}</ion-text>

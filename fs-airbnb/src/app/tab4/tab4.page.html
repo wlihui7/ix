@@ -1,12 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tab"></ion-back-button>
-  </ion-buttons>  
+        <ion-back-button defaultHref="tab/tabs/tab1"></ion-back-button>
+      </ion-buttons>  
     <ion-title>Inbox</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-text>Oof, no one messaged you.</ion-text>
-</ion-content>
+    <ion-list> <h2>Messages/h2> 
+      <ion-item 
+        *ngFor="let message of messages">
+        <b>{{message.sender}}</b>: 
+        <br>
+        {{message.message}}
+      </ion-item>
+    </ion-list></ion-content>
