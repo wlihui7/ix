@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab Three
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item 
+      *ngFor="let rental of rentals" 
+      (click)="navToRental(rental)">
+      {{property.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>
