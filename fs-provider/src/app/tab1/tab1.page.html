@@ -1,17 +1,21 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home/tabs/tab1"></ion-back-button>
+  </ion-buttons>  
     <ion-title>
-      Your Rentals
+      Rentals
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-   <ion-list>
-     <ion-item *ngFor="let rental of provider.rentals">
-       <ion-text>{{rental.name}}</ion-text>
-       <br>
-       <ion-text>Price: $ {{rental.price}}</ion-text>
-     </ion-item>
-   </ion-list>
+  <ion-list> <h2>Your Rentals</h2> 
+    <ion-item 
+      *ngFor="let rental of rentals"
+      (click)="enterRental(rental)" >
+      {{rental.name}}
+    </ion-item>
+  </ion-list>
+  <ion-button color="primary" (click)="createRental()">Create New Rental</ion-button>
 </ion-content>
