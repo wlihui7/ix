@@ -96,16 +96,15 @@ module.exports = class AuthService {
         // if found, returns the user; if not, throws error
             parseData.users.forEach(existingUser => {
                 if (existingUser.email === user.email) {
+                    ret = existingUser;
                     found = true;
-                }
-                if (found) {
-                    ret = user;
                     console.log("Wassup");
                     return;
-                } else {
-                    throw new Error("User not found");
                 }
             });
+            if (!found) {
+                throw new Error("User not found");
+            }
         });
         return ret;
     }
