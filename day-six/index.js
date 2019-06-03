@@ -1,38 +1,27 @@
 const express = require("express");
+const path = require("path");
+const logger = require("./src/utilities/middleware/logger");
 
 const app = express();
 
-var properties = new Array();
+app.use(logger);
 
+//Middleware that parses the body
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
-// callback function inside of get
-app.get("/", (req,res) => {
-    console.log(req.headers);
-    res.send("<p> sup </p>");
-});
+//if http request to api/users, then refer to the user's router in user/index file 
+app.use("/api/users", require("./src/api/users-routes"));
+app.use("/api/auth", require("./src/api/auth-routes"));
 
-app.get("/properties", (req, res) => {
-    properties.push({
-        id: 1,
-        name: "One",
-        location: "Lisbon"
-    });
-    res.json(properties);
-});
+//either use the process's port or 5000
+const PORT = process.env.PORT || 5000;
 
-app.post("/properties", (req, res) => {
-    const property = req.body;
-    properties.push(property);
-    res.json(property);
-});
-app.listen(3000, (err) => {
+//listening to the port now 
+app.listen(PORT, (err) => {
     if (err) {
         console.log("oop");
         return;
     }
-    console.log("server listenin' port 3000");
+    console.log(`server listenin' port ${PORT}`);
 });
-
-console.log("yp");
