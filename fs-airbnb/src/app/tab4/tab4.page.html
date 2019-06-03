@@ -11,8 +11,7 @@
     <ion-list> <h2>Messages </h2> 
       <ion-item 
         *ngFor="let message of messages">
-        <b>{{message.sender.fName}}</b>: 
-        <br>
+        <ion-label>{{message.sender.fName}}:</ion-label> 
         <ion-text slot="end">{{message.message}}</ion-text>
       </ion-item>
     </ion-list>

@@ -17,6 +17,6 @@ export class LoginPage implements OnInit {
   }
 
   enterLogin() {
-    this.navCtrl.navigateForward('');
+    this.navCtrl.navigateForward('registration');
   }
 }

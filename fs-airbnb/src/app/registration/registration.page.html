@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="register">
+    <ion-item>
+      <ion-label>First Name:</ion-label>
+      <ion-input name="first-name" class="name" placeholder="First Name" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Last Name:</ion-label>
+      <ion-input name="last-name" class="name" placeholder="Last Name" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Username:</ion-label>
+      <ion-input name="username" class="username" placeholder="Username" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input type="password" name="password" class="password" placeholder="Password" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input type="email" name="email" class="email" placeholder="Email" required="true"></ion-input>
+    </ion-item>
+    <ion-button class="button" id="register button" (click)="enterProfile()">Enter</ion-button>
+  </form> 
+</ion-content>

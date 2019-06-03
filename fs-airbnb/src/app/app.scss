@@ -7,12 +7,12 @@
 
 
 :root {
-  --ion-color-primary: #9f9fff;
-  --ion-color-primary-rgb: 159,159,255;
+  --ion-color-primary: #b3b3ff;
+  --ion-color-primary-rgb: 179,179,255;
   --ion-color-primary-contrast: #000000;
   --ion-color-primary-contrast-rgb: 0,0,0;
-  --ion-color-primary-shade: #8c8ce0;
-  --ion-color-primary-tint: #a9a9ff;
+  --ion-color-primary-shade: #9e9ee0;
+  --ion-color-primary-tint: #bbbbff;
 
   --ion-color-secondary: #948378;
   --ion-color-secondary-rgb: 148,131,120;
@@ -71,10 +71,23 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-title, ionic-label.innerHTML {
-  font-family: 'Poiret One', cursive;
+p, ion-text, ion-item {
+  font-family: 'EB Garamond', serif;
 }
 
-p, HTML {
+ion-text {
+  margin: 5px;
+}
+
+HTML {
   font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+ion-label {
+  margin: 5px;
+}
+
+h2 {
+  margin: 8px;
 }

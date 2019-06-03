@@ -9,9 +9,9 @@
 
 <ion-content>
   <h2>{{rental.name}}</h2>
-  <ion-text><i>{{rental.location}}</i></ion-text>
+  <ion-text><b>Location</b>: {{rental.location}}</ion-text>
   <br>
-  <ion-text><b>Price: </b> {{rental.price}}</ion-text>
+  <ion-text><b>Price: </b> ${{rental.price}}</ion-text>
   <br>
   <ion-list *ngIf="(rental.reviews)">
     <ion-item  *ngFor="let review of rental.reviews">

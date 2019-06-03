@@ -3,6 +3,7 @@ import { Rental, Review, Message } from '../models';
 export class User {
     fName: string;
     lName: string;
+    name: string;
     username: string;
     password: string;
     rentals: Array<Rental>;
@@ -12,6 +13,7 @@ export class User {
     constructor(first: string, last: string) {
         this.fName = first;
         this.lName = last;
+        this.name = first + ' ' + last;
         this.rentals = new Array<Rental>();
         this.saved = new Array<Rental>();
         this.reviews = new Array<Review>();
