@@ -13,34 +13,7 @@ var users;
 
 
 module.exports = class AuthService {
-    constructor() {
-        // fs.readFile("./src/data/data.json", function(err, data) {
-        //     var error = false;
-        //     var errMsg = "";
-        //     if (err) {
-        //         error = true;
-        //         throw err; 
-        //     } else {
-        //         var parseData = JSON.parse(data);
-        //         users = parseData.users;
-        //     }
-        // });
-    }
-
-    // getUsers() {
-    //     let ret;
-    //     fs.readFile("./src/data/data.json", function(err, data) {
-    //         var error = false;
-    //         var errMsg = "";
-    //         if (err) {
-    //             error = true;
-    //             throw err; 
-    //         } else {
-    //             ret = data.users;
-    //         }
-    //     });
-    //     return ret;
-    // }
+    constructor() {}
 
     //checks that the user is a valid body 
     async register(user) {
