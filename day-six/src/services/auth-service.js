@@ -9,7 +9,7 @@ const roles = {
     USER: "user"
 };
 
-let users;
+var users;
 
 
 module.exports = class AuthService {
@@ -85,20 +85,28 @@ module.exports = class AuthService {
 
     async login(user) {
         if (!validationService.isValidRegister(user)) {
-            throw new Error400("Registration not valid!");
+            throw new Error("Registration not valid!");
         }
-        const found = false;
+        let found = false;
+        let ret; 
+        fs.readFile("./src/data/data.json", function(err, data) {
+            if (err) throw err;
+            var parseData = JSON.parse(data);
         // tries to find the user logging in by email
         // if found, returns the user; if not, throws error
-        users.forEach(existingUser => {
-            if (existingUser.email === user.email) {
-                found = true;
-            }
-            if (found) {
-                return user;
-            } else {
-                throw new Error401("User not found");
-            }
+            parseData.users.forEach(existingUser => {
+                if (existingUser.email === user.email) {
+                    found = true;
+                }
+                if (found) {
+                    ret = user;
+                    console.log("Wassup");
+                    return;
+                } else {
+                    throw new Error("User not found");
+                }
+            });
         });
+        return ret;
     }
 };
