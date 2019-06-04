@@ -1,7 +1,7 @@
 module.exports = class ValidationService {
     constructor() {}
 
-    isValidRegister(user) {
+    isValidRegisterBody(user) {
         var errors = [];
         //if first and last name are null then it's false automatically
         if (!user.firstName || !user.lastName) {

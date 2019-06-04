@@ -11,7 +11,6 @@ router.post("/", (req, res) => {
             error = true;
             throw err; 
         } else {
-            // var count = 0;
 
             if (data.length > 0) {
                 var parseData = JSON.parse(data);
@@ -33,7 +32,7 @@ router.post("/", (req, res) => {
             }
 
             const newUser = {
-                id: users.length + 1, 
+                id: parseData.users.length + 1, 
                 firstName: user.firstName, 
                 lastName: user.lastName,
                 phone: user.phone,
@@ -116,7 +115,7 @@ router.get("/delete/:id", (req, res) => {
             throw err;
         }
         var parseData = JSON.parse(data);
-        parseData.users = parseData.user.filter(user => 
+        parseData.users = parseData.users.filter(user => 
             user.id == req.params.id);
         fs.writeFile("./src/data/data.json", JSON.stringify(parseData), 
             function(err) {

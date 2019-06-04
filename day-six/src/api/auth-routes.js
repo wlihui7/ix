@@ -12,7 +12,7 @@ router.post("/register", (req, res) => {
             res.json(user);
         })
         .catch(err => {
-            res.status(400).json({ msg: err.message });
+            return res.status(400).json({ msg: err.message });
         });
 });
 
@@ -20,11 +20,13 @@ router.post("/login", (req, res) => {
     authService
         .login(req.body)
         .then((user) => {
-            res.json(user);
+            console.log("then user: " + user);
+            return res.json(user);
         })
         .catch(err => {
-            res.status(400).json({ msg: err.message });
+            return res.status(400).json({ msg: err.message });
         });
+    // return authService
 });
 
 module.exports = router;
