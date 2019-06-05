@@ -19,35 +19,45 @@ router.post("/register", (req, res) => {
     if (!validationService.isValidRegister(user)) {
         return res.status(400).json({ msg: "Registration not valid!" });
     }
+    
+    var nUser = new User(user.name, user.role, user.email, user.password);
+    nUser.createUser((err, result) => { 
+        if (err) {
+            return res.status(400).json({ msg: err });
+        } else {
+            return res.json(result);
+        }
+       });
+    
 
-    fs.readFile("./src/data/data.json", function(err, data) {
-        if (err) throw err;
-        var parseData = JSON.parse(data);
+    // fs.readFile("./src/data/data.json", function(err, data) {
+    //     if (err) throw err;
+    //     var parseData = JSON.parse(data);
   
-        parseData.users.forEach(existingUser => {
-          if (existingUser.email === user.email) {
-            return res.status(400).json({ msg: "This email address already been used" });
-          }
-        });
+    //     parseData.users.forEach(existingUser => {
+    //       if (existingUser.email === user.email) {
+    //         return res.status(400).json({ msg: "This email address already been used" });
+    //       }
+    //     });
   
-        //const passwordHash = await this.db.hashPassword(user.password);
+    //     //const passwordHash = await this.db.hashPassword(user.password);
   
-        const newUser = {
-          id: parseData.users.length + 1,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phone: user.phone,
-          email: user.email,
-          password: user.password,
-          role: roles.USER
-        };
+    //     const newUser = {
+    //       id: parseData.users.length + 1,
+    //       firstName: user.firstName,
+    //       lastName: user.lastName,
+    //       phone: user.phone,
+    //       email: user.email,
+    //       password: user.password,
+    //       role: roles.USER
+    //     };
   
-        parseData.users.push(newUser);
-        fs.writeFile("./src/data/data.json", JSON.stringify(parseData), function(err) {
-          if (err) throw err;
-          return res.json(newUser);
-        });
-      });
+    //     parseData.users.push(newUser);
+    //     fs.writeFile("./src/data/data.json", JSON.stringify(parseData), function(err) {
+    //       if (err) throw err;
+    //       return res.json(newUser);
+    //     });
+    //   });
   
     
     // authService

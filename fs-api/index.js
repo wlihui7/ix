@@ -1,5 +1,9 @@
 //imports 
 const express = require("express");
+const User = require("./src/models/user");
+
+// or just do:
+// connection.connect();
 
 const app = express();
 
@@ -23,3 +27,30 @@ app.listen(PORT, (err) => {
     }
     console.log(`server listenin' port ${PORT}`);
 });
+
+// //name, role, email, password
+// var user = new User("Leah Wang", "user", "wanglihui17@gmail.com", "belgkbetg");
+// user.createUser((err, result) => {
+//     console.log(err);
+//     console.log(result);
+// });
+
+// //name, role, email, password
+// var user = new User("Leah Wang", "user", "wanglihui17@gmail.com", "belgkbetg");
+// user.getUserByID(1, (err, result) => {
+//     console.log(err);
+//     console.log(result);
+// });
+// //name, role, email, password
+// var user = new User("Leah Bang", "user", "foo@gmail.com", "belgkbetg");
+// user.updateUser(4, user,(err, result) => {
+//     console.log(err);
+//     console.log(result);
+// });
+
+// //name, role, email, password
+// var user = new User("Leah Bang", "user", "foo@gmail.com", "belgkbetg");
+// user.deleteUser(5, (err, result) => {
+//     console.log(err);
+//     console.log(result);
+// });
