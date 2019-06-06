@@ -11,8 +11,10 @@ export class Tab4Page implements OnInit {
   messages: Array<Message> = new Array<Message>();
 
   constructor() {
-    const user1: User = new User('Leah', 'Wang');
-    const user2: User = new User('Anina', 'Ku');
+    const user1: User = new User();
+    user1.name = 'Leah Wang';
+    const user2: User = new User();
+    user2.name = 'Anina Ku';
     const message1 = new Message(user2, user1, "I'm hungry");
     const message2 = new Message(user1, user2, "Cool");
 
@@ -21,5 +23,4 @@ export class Tab4Page implements OnInit {
 
   ngOnInit() {
   }
- 
 }

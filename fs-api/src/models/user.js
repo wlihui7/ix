@@ -33,7 +33,7 @@ getAllUsers(result) {
     });
 }
 
-getUserByID(id, result) {
+static getUserByID(id, result) {
     mysql.query("Select * from user where id = ? ", id, function(err, res) {
         if (err) {
             console.log("error: ", err);
@@ -41,6 +41,18 @@ getUserByID(id, result) {
         } else {
             console.log("User: ", res);
             result(null, res);
+        }
+    });
+}
+
+static getUserByEmail(email, result) {
+    mysql.query("Select * from user where email = ? ", email, function(err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            console.log("User: ", res);
+            result(null, res[0]);
         }
     });
 }

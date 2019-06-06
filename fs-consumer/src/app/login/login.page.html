@@ -7,12 +7,12 @@
 <ion-content class = "background" color = "tertiary">
   <form class = "form">
     <ion-item>
-      <ion-label color="dark">Username: </ion-label>
-      <ion-input type="text" placeholder="Enter Username"></ion-input>
+      <ion-label color="dark">Email: </ion-label>
+      <ion-input type="text" name="email" placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="dark">Password: </ion-label>
-      <ion-input type="password" placeholder="Enter Password"></ion-input>
+      <ion-input type="password" name="password" placeholder="Enter Password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
   </form>
   <div class = "buttons">

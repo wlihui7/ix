@@ -4,11 +4,11 @@ module.exports = class ValidationService {
     isValidRegisterBody(user) {
         var errors = [];
         //if first and last name are null then it's false automatically
-        if (!user.firstName || !user.lastName) {
-            console.log("bad first/last name");
-            errors.push({ message: "Invalid Name"});
-            return false;
-        }
+        // if (!user.firstName || !user.lastName) {
+        //     console.log("bad first/last name");
+        //     errors.push({ message: "Invalid Name"});
+        //     return false;
+        // }
         if (!this.isValidEmailAddress(user.email)) {
             console.log("bad email");
             errors.push({ message: "Invalid Email"});
@@ -18,7 +18,6 @@ module.exports = class ValidationService {
             errors.push({ message: "Invalid Password"});
             return false;
         }
-        
         return true;
     }
 

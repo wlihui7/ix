@@ -1,11 +1,15 @@
 //imports 
 const express = require("express");
+const cors = require("cors");
+
 const User = require("./src/models/user");
 
 // or just do:
 // connection.connect();
 
 const app = express();
+
+app.use(cors());
 
 //Middleware that parses the body (tells express we're using json)
 app.use(express.json());

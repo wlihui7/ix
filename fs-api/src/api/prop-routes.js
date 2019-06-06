@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 var fs = require("fs");
+const Rental = require("../models/rental");
+const Booking = require("../models/booking");
 
 const status = {
     NEW: "new", 
@@ -15,8 +17,8 @@ router.post("/", (req, res) => {
         return res.status(400).json({message: "Missing information!"});
     }
     // name, location, price, providerID, consumerID, imageURL
-    var nProp = new Rental(property.name, property.location, property.price, property.providerID, property.consumerID, property.imageURL);
-    nProp.createProp((err, result) => { 
+    var nProp = new Rental(property.name, property.location, property.price, property.consumerID, property.imageURL);
+    nProp.createRental((err, result) => { 
         if (err) {
             return res.status(400).json({ msg: err });
         } else {
@@ -184,6 +186,7 @@ router.post("/:id/bookings", (req, res) => {
             return res.json(result);
         }
     });
+});
 
     // fs.readFile("./src/data/data.json", (err, data) => {
     //     if (err) {

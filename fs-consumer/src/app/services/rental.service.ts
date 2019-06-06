@@ -9,14 +9,18 @@ export class RentalService {
   rentals: Array<Rental> = new Array<Rental>();
 
   constructor() {
-    const rental1 = new Rental('Back to Lisbon', 'Lisbon', 500);
+    const rental1 = new Rental();
     rental1.id = 1;
-    const rental2 = new Rental('Wang Fu Hotel', 'Beijing', 60);
+    rental1.name = 'Back to Lisbon';
+    rental1.location = 'Lisbon';
+    rental1.price = 500;
+    const rental2 = new Rental();
     rental2.id = 2;
-    const rental3 = new Rental('Hill College House', 'Philadelphia', 120);
-    rental3.id = 3;
+    rental2.name = 'Wang Fu Hotel';
+    rental2.location = 'Beijing';
+    rental2.price = 60;
 
-    this.rentals.push(rental1, rental2, rental3);
+    this.rentals.push(rental1, rental2);
    }
 
    getAllRentals(): Array<Rental> {
@@ -36,10 +40,15 @@ export class RentalService {
 
    getSavedRentals(): Array<Rental> {
     let ret: Array<Rental> = new Array<Rental>();
-    const rental1 = new Rental('Back to Lisbon', 'Lisbon', 500);
-    rental1.id = 1;
-    const rental2 = new Rental('Wang Fu Hotel', 'Beijing', 60);
+    const rental1 = new Rental();
+    rental1.name = 'Back to Lisbon';
+    rental1.location = 'Lisbon';
+    rental1.price = 500;
+    const rental2 = new Rental();
     rental2.id = 2;
+    rental2.name = 'Wang Fu Hotel';
+    rental2.location = 'Beijing';
+    rental2.price = 60;
     ret.push(rental1, rental2);
     return ret;
    }

@@ -1,10 +1,9 @@
 const mysql = require("../databases/db");
 
 class Booking {
-    constructor(propID, userID, providerID, dateFrom, dateTo) {
-        this.propID = propID;
+    constructor(propID, userID, dateFrom, dateTo) {
+        this.rentalID = propID;
         this.userID = userID;
-        this.providerID = providerID;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         // this.date_created = new Date();

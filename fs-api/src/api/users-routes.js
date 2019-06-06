@@ -1,12 +1,32 @@
 const express = require("express");
 const router = express.Router();
-var fs = require("fs");
+// var fs = require("fs");
 const User = require("../models/user");
+
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    
+    // var nUser = new User(user.name, user.role, user.email, user.password);
+
+    User.getUserByID(id, (err, result) => {
+        if (err) {
+            return res.status(500).json({ msg: err });
+        } else {
+            // var responseUser = {
+            //     id: this.Id,
+            //     name: nUser.name,
+            //     email: nUser.email,
+            //     password: nUser.password
+            // };
+            return res.status(200).json(result);
+        }
+       });
+    });
 
 router.post("/", (req, res) => {
     const user = req.body; 
     //name, role, email, password
-    if (!user.name || !user.role || !user.email || !user.password) {
+    if (!user.name || !user.email || !user.password) {
         error = true;
         return res.status(400).json({message: "Missing information!"});
     }
@@ -14,9 +34,18 @@ router.post("/", (req, res) => {
     var nUser = new User(user.name, user.role, user.email, user.password);
     nUser.createUser((err, result) => { 
         if (err) {
-            return res.status(400).json({ msg: err });
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(400).json({ message: "Duplicate Email." });
+            }
+            return res.status(500).json({ msg: err });
         } else {
-            return res.json(result);
+            var responseUser = {
+                id: result.insertId,
+                name: nUser.name,
+                email: nUser.email,
+                password: nUser.password
+            };
+            return res.status(200).json(responseUser);
         }
        });
     

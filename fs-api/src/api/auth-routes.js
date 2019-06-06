@@ -3,6 +3,7 @@ const router = express.Router();
 
 const ValidationService = require("../services/validation-service");
 const validationService = new ValidationService();
+const User = require("../models/user");
 var fs = require("fs");
 
 const roles = {
@@ -71,27 +72,47 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    let user = req.body;
-    console.log(user);
+    let user = req.body[0];
+    console.log("user:", user);
     if (!validationService.isValidRegisterBody(user)) {
         return res.status(400).json({ msg: "Invalid Registration!" });
       }
-    let found = false;
-    fs.readFile("./src/data/data.json", (err, data) => {
-        if (err) throw err;
-        var parseData = JSON.parse(data);
-      // tries to find the user logging in by email
-      // if found, returns the user; if not, throws error
-          parseData.users.forEach(existingUser => {
-              if (existingUser.email === user.email) {
-                  ret = existingUser;
-                  found = true;
-              }
-          });
-          if (!found) {
-              return res.status(400).json({ msg: "User not found" });
-          }
-          return res.json(ret);
+     User.getUserByEmail(user.email, (err, result) => {
+         result = result;
+         console.log("result: ", result);
+        if (err) {
+            return res.status(400).json({ msg: err });
+        } else {
+            if (result.password == user.password) {
+                var ret = {
+                    id: result.insertId,
+                    name: result.name,
+                    email: result.email,
+                    password: result.password
+                };
+                return res.json(ret);
+            } else {
+                return res.status(400).json({ msg: "Invalid Login"});
+            }
+        }
+       });
+     })
+    // let found = false;
+    // fs.readFile("./src/data/data.json", (err, data) => {
+    //     if (err) throw err;
+    //     var parseData = JSON.parse(data);
+    //   // tries to find the user logging in by email
+    //   // if found, returns the user; if not, throws error
+    //       parseData.users.forEach(existingUser => {
+    //           if (existingUser.email === user.email) {
+    //               ret = existingUser;
+    //               found = true;
+    //           }
+    //       });
+    //       if (!found) {
+    //           return res.status(400).json({ msg: "User not found" });
+    //       }
+    //       return res.json(ret);
 
 
 
@@ -104,7 +125,7 @@ router.post("/login", (req, res) => {
     //     .catch(err => {
     //         return res.status(400).json({ msg: err.message });
     //     });
-});
-});
+// });
+// });
 
 module.exports = router;
