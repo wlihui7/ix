@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Rental, User, Review } from 'c:/Users/wangl/OneDrive/Desktop/iX/ix/fs-airbnb/src/app/models/index';
+import { Rental, Booking } from 'c:/Users/wangl/OneDrive/Desktop/iX/ix/fs-consumer/src/app/models/index';
 import { ActivatedRoute } from '@angular/router';
-import { RentalService } from '../services/rental.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-rental',
@@ -9,26 +9,70 @@ import { RentalService } from '../services/rental.service';
   styleUrls: ['./rental.page.scss'],
 })
 export class RentalPage implements OnInit {
-  private rentalID: number;
-  rental: Rental;
+  rentalID: number;
+  rental: Rental = new Rental();
+  userID: number;
+  booking: Booking = new Booking();
+  dateFrom: string;
+  dateTo: string;
 
-  rentals: Array<Rental> = new Array<Rental>();
-
-  constructor(private actRoute: ActivatedRoute, private rentalServ: RentalService) {
+  constructor(private actRoute: ActivatedRoute, private httpClient: HttpClient) {
   }
 
 
   ngOnInit() {
-    const findRental = (data: any) => {
-      this.rentalID = data.params.rentalID;
+    this.userID = parseInt(localStorage.getItem('user_id'));
+    this.rentalID = parseInt(localStorage.getItem('rental_id'));
+    console.log("rental id", this.rentalID);
+    console.log("user id", this.userID);
 
-      this.rental = this.rentalServ.findRentalById(this.rentalID);
+    // const findRental = (data: any) => {
+    //   this.rentalID = data.params.rentalID;
+
+    //   this.setRental(this.rentalID);
+    // };
+    // this.actRoute.queryParamMap.subscribe(findRental);
+
+    this.checkBooking();
+  }
+
+  setRental(id: number) {
+    console.log('Set rental in rental page\'s id: ', id);
+    this.httpClient.get(`http://localhost:5000/properties/${id}`)
+    .subscribe( (response: Rental) => {
+      console.log('rental page get response: ', response);
+      this.rental = response;
       if (!this.rental) {
-        alert("Rental Not Found!");
+        alert('Rental Not Found!');
       }
-    };
+    });
+  }
 
-    this.actRoute.queryParamMap.subscribe(findRental);
+  checkBooking() {
+    console.log("rental.consumerID", this.rental.consumerID);
+    console.log("this.userID", this.userID);
+    if (this.rental.consumerID == this.userID) {
+      this.httpClient.get(`http://localhost:5000/properties/${this.rentalID}/${this.userID}`)
+      .subscribe ( (response: any) => {
+        this.booking.rentalID = this.rentalID;
+        this.booking.userID = this.userID;
+        this.booking.dateFrom = response.dateFrom;
+        this.booking.dateTo = response.dateTo;
+      });
+    }
+  }
+
+  makeBooking() {
+    this.booking.rentalID = this.rentalID;
+    this.booking.userID = this.userID;
+    this.booking.dateFrom = this.dateFrom;
+    this.booking.dateTo = this.dateTo;
+    this.rental.consumerID = this.userID;
+    this.httpClient.post(`http://localhost:5000/properties/${this.rentalID}/bookings`, this.booking)
+    .subscribe( (response: Booking) => {
+      alert("Booking successful!");
+    });
   }
 
 }
+

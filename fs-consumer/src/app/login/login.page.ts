@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { User } from '../models';
-import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 import { HttpClient } from '@angular/common/http';
 
 
