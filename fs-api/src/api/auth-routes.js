@@ -72,25 +72,26 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    let user = req.body[0];
-    console.log("user:", user);
+    let user = req.body;
+    console.log("auth route's user:", user);
     if (!validationService.isValidRegisterBody(user)) {
         return res.status(400).json({ msg: "Invalid Registration!" });
       }
      User.getUserByEmail(user.email, (err, result) => {
          result = result;
-         console.log("result: ", result);
-        if (err) {
+         console.log("auth routes's result: ", result);
+        if (err) { 
             return res.status(400).json({ msg: err });
         } else {
             if (result.password == user.password) {
                 var ret = {
-                    id: result.insertId,
+                    id: result.id,
                     name: result.name,
                     email: result.email,
                     password: result.password
                 };
-                return res.json(ret);
+                console.log("auth routes ret var", ret);
+                return res.status(200).json(ret);
             } else {
                 return res.status(400).json({ msg: "Invalid Login"});
             }

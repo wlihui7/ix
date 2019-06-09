@@ -1,23 +1,40 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tab"></ion-back-button>
+      <ion-back-button defaultHref="tab/tabs/tab1"></ion-back-button>
   </ion-buttons>  
     <ion-title *ngIf="rental">{{rental.name}} Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h2>{{rental.name}}</h2>
-  <ion-text><b>Location</b>: {{rental.location}}</ion-text>
+  <h2 *ngIf="rental">{{rental.name}}</h2>
+  <ion-text *ngIf="rental"><b>Location</b>: {{rental.location}}</ion-text>
   <br>
-  <ion-text><b>Price: </b> ${{rental.price}}</ion-text>
+  <ion-text *ngIf="rental"><b>Price: </b> ${{rental.price}}</ion-text>
   <br>
-  <ion-list *ngIf="(rental.reviews)">
+
+  <ion-list *ngIf="this.rental.consumerID == this.userID">
+    <ion-item><ion-label>Check-In</ion-label>{{booking.dateFrom}}</ion-item>
+    <ion-item><ion-label>Check Out</ion-label>{{booking.dateTo}}</ion-item>
+  </ion-list>
+
+  <form class="makeBooking" *ngIf="this.rental.consumerID != this.userID">
+    <div class = "dates">
+      <ion-label>Check-in</ion-label>
+      <ion-input name="checkin" placeholder="MMM DD, YYYY" [(ngModel)]="dateFrom"></ion-input>
+      <ion-label>Checkout</ion-label>
+      <ion-input name="checkout" placeholder="MMM DD, YYYY" [(ngModel)]="dateTo"></ion-input>
+    </div>
+    <ion-button (click)="makeBooking()">Make Booking</ion-button>  
+  </form>
+
+  
+  <!-- <ion-list *ngIf="(rental.reviews)">
     <ion-item  *ngFor="let review of rental.reviews">
       <ion-text><i>{{review.message}}</i></ion-text>
       <br>
       <ion-text slot = "end">{{review.reviewer.fName}}</ion-text>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

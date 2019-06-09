@@ -30,7 +30,7 @@ export class RegistrationPage implements OnInit {
     },
       (err) => {
         console.log(err);
-        alert(err.error.message);
+        alert(err.error.msg);
         // if (err.status == '400') {
         //   alert('Invalid Email');
         // }

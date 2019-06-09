@@ -9,15 +9,15 @@ module.exports = class ValidationService {
         //     errors.push({ message: "Invalid Name"});
         //     return false;
         // }
-        if (!this.isValidEmailAddress(user.email)) {
-            console.log("bad email");
-            errors.push({ message: "Invalid Email"});
-            return false;
-        }
-        if (!this.isValidPassword(user.password)) {
-            errors.push({ message: "Invalid Password"});
-            return false;
-        }
+        // if (!this.isValidEmailAddress(user.email)) {
+        //     console.log("bad email");
+        //     errors.push({ message: "Invalid Email"});
+        //     return false;
+        // }
+        // if (!this.isValidPassword(user.password)) {
+        //     errors.push({ message: "Invalid Password"});
+        //     return false;
+        // }
         return true;
     }
 

@@ -23,8 +23,8 @@ mysql.query("INSERT INTO rental set ?", this, function(err, results) {
     });
 }
 
-getAllRentals(result) {
-    mysql.query("SELECT * FROM rental", this, function(err, res) {
+static getAllRentals(result) {
+    mysql.query("SELECT * FROM rental", function(err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -35,14 +35,14 @@ getAllRentals(result) {
     });
 }
 
-getRentalByID(id, result) {
+static getRentalByID(id, result) {
     mysql.query("Select * from rental where id = ? ", id, function(err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log("Rental: ", res);
-            result(null, res);
+            console.log("Rental: ", res[0]);
+            result(null, res[0]);
         }
     });
 }

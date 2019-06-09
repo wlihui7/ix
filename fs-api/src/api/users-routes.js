@@ -11,12 +11,15 @@ router.get("/:id", (req, res) => {
     User.getUserByID(id, (err, result) => {
         if (err) {
             return res.status(500).json({ msg: err });
+        } else if (!result) {
+            return res.status(400).json({msg: "User Not Found!"});
         } else {
+            console.log("! user routes's result ", result);
             // var responseUser = {
             //     id: this.Id,
-            //     name: nUser.name,
-            //     email: nUser.email,
-            //     password: nUser.password
+            //     name: result.name,
+            //     email: result.email,
+            //     password: result.password
             // };
             return res.status(200).json(result);
         }
@@ -28,14 +31,14 @@ router.post("/", (req, res) => {
     //name, role, email, password
     if (!user.name || !user.email || !user.password) {
         error = true;
-        return res.status(400).json({message: "Missing information!"});
+        return res.status(400).json({ msg: "Missing information!"});
     }
 
     var nUser = new User(user.name, user.role, user.email, user.password);
     nUser.createUser((err, result) => { 
         if (err) {
             if (err.code === 'ER_DUP_ENTRY') {
-                return res.status(400).json({ message: "Duplicate Email." });
+                return res.status(400).json({ msg: "Duplicate Email." });
             }
             return res.status(500).json({ msg: err });
         } else {
@@ -112,7 +115,7 @@ router.post("/update", (req, res) => {
     const user = req.body;
     if (!user.id || !user.name || !user.role || !user.email || !user.password) {
         error = true;
-        return res.status(400).json({message: "Missing information!"});
+        return res.status(400).json({msg: "Missing information!"});
     }
     var nUser = new User(user.name, user.role, user.email, user.password);
 
@@ -173,7 +176,7 @@ router.get("/delete/:id", (req, res) => {
     const user = req.body;
     if (!id || !user.name || !user.role || !user.email || !user.password) {
         error = true;
-        return res.status(400).json({message: "Missing information!"});
+        return res.status(400).json({msg: "Missing information!"});
     }
     var nUser = new User(user.name, user.role, user.email, user.password);
 

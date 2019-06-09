@@ -22,7 +22,7 @@ mysql.query("INSERT INTO booking set ?", this, function(err, results) {
 }
 
 getAllBookings(result) {
-    mysql.query("SELECT * FROM booking", this, function(err, res) {
+    mysql.query("SELECT * FROM booking", function(err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -39,8 +39,8 @@ getBookingByID(id, result) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log("Booking: ", res);
-            result(null, res);
+            console.log("Booking: ", res[0]);
+            result(null, res[0]);
         }
     });
 }
@@ -57,7 +57,7 @@ updateBooking(id, uBooking, result) {
     });
 }
 
-deleteBooking(id, result) {
+static deleteBooking(id, result) {
     mysql.query("DELETE FROM booking WHERE id = ?", id, function(err, res) {
         if (err) {
             console.log("error: ", err);
@@ -67,7 +67,20 @@ deleteBooking(id, result) {
             result(null, res);
         }
     });
+}
 
+static getBookingByUser(consumerId, rentalId, result) {
+    consumerId = parseInt(consumerId);
+    rentalId = parseInt(rentalId);
+    mysql.query("SELECT * FROM booking WHERE rentalID = ? AND userID = ?", [rentalId, consumerId], function(err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            console.log("Booking: ", res[0]);
+            result(null, res[0]);
+        }
+    });
 }
 
 };

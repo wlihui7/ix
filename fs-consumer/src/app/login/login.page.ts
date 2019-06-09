@@ -17,19 +17,21 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+  
   enterExplore() {
     this.httpClient.post('http://localhost:5000/auth/login', this.user)
     .subscribe( (response: User) => {
-      console.log("get's user: ", this.user, "get's response: ", response);
-      const navOptions: NavigationOptions = {
-        queryParams: {
-          id: response.id
-        }
-      };
-      this.navCtrl.navigateForward('tab/tabs/tab5', navOptions);
+      console.log('login\'s id:', response.id);
+      localStorage.setItem('user_id', '' + response.id);
+      // const navOptions: NavigationOptions = {
+      //   queryParams: {
+      //     id: response.id
+      //   }
+      // };
+      this.navCtrl.navigateForward('tab/tabs/tab5');
     },
       (err) => {
-        console.log(err);
+        console.log('login throws error', err);
         alert(err.error.msg);
         // if (err.status == '400') {
         //   alert('Invalid Email');

@@ -10,11 +10,22 @@ const status = {
     REJECTED: "rejected"
 };
 
+
+router.get("/", (req, res) => {
+    Rental.getAllRentals( (err, result) => {
+        if (err) {
+            return res.status(400).json({ msg: err });
+        } else {
+            return res.json(result);
+        }
+    });
+})
+
 router.post("/", (req, res) => {
     const property = req.body;
   
     if (!property.name || !property.location || !property.price) {
-        return res.status(400).json({message: "Missing information!"});
+        return res.status(400).json({msg: "Missing information!"});
     }
     // name, location, price, providerID, consumerID, imageURL
     var nProp = new Rental(property.name, property.location, property.price, property.consumerID, property.imageURL);
@@ -38,7 +49,7 @@ router.post("/", (req, res) => {
 //                 var parseData = JSON.parse(data);
 //                 parseData.properties.forEach(existingProp => {
 //                     if (existingProp.name === property.name && existingProp.location === property.location) {
-//                         return res.status(400).json({message: "This name has already been used!"});
+//                         return res.status(400).json({msg: "This name has already been used!"});
 //                         // throw new Error("This email address has already been used!");
 //                     }
 //                     // count++;
@@ -82,7 +93,7 @@ router.delete("/:id", (req, res) => {
     const property = req.body;
     if (!property.name || !property.location || !property.price) {
         error = true;
-        return res.status(400).json({message: "Missing information!"});
+        return res.status(400).json({msg: "Missing information!"});
     }
     var nProp = new Rental(property.name, property.location, property.price, property.providerID, property.consumerID, property.imageURL);
 
@@ -90,7 +101,7 @@ router.delete("/:id", (req, res) => {
         if (err) {
             return res.status(400).json({ msg: err });
         } else {
-            return res.status(200).json({message: "Property Deleted"});
+            return res.status(200).json({msg: "Property Deleted"});
         }
        });
     });
@@ -124,13 +135,7 @@ router.delete("/:id", (req, res) => {
 
 router.get("/:id", (req, res) => {
     const id = req.params.id;
-    const property = req.body;
-    if (!property.name || !property.location || !property.price) {
-        error = true;
-        return res.status(400).json({message: "Missing information!"});
-    }
-    var nProp = new Rental(property.name, property.location, property.price, property.providerID, property.consumerID, property.imageURL);
-    nProp.getRentalByID(id, (err, result) => {
+    Rental.getRentalByID(id, (err, result) => {
         if (err) {
             return res.status(400).json({ msg: err });
         } else {
@@ -160,26 +165,8 @@ router.post("/:id/bookings", (req, res) => {
     const id = req.params.id;
     const request = req.body;
 
-    var errors = [];
-
-    if (!request.dateFrom) {
-        errors.push({ message: "Invalid Start Date" });
-    }
-
-    if (!request.dateTo) {
-        errors.push({ message: "Invalid End Date" });
-    }
-
-    if (!request.userId) {
-        errors.push({ message: "Invalid User ID" });
-    }
-
-    if (errors.length > 0) {
-        return res.status(400).json({ messages: errors });
-    }
-
-    var booking = new Booking(request.userId, id, request.dateFrom, request.dateTo);
-    booking.createBooking((err, res) => {
+    var booking = new Booking(id, request.userID, request.dateFrom, request.dateTo);
+    booking.createBooking((err, result) => {
         if (err) {
             return res.status(400).json({ msg: err });
         } else {
@@ -220,29 +207,24 @@ router.post("/:id/bookings", (req, res) => {
 
 router.get("/:id/bookings", (req, res) => {
     const id = req.params.id;
-    const request = req.body;
-
-    var errors = [];
-
-    if (!request.dateFrom) {
-        errors.push({ message: "Invalid Start Date" });
-    }
-
-    if (!request.dateTo) {
-        errors.push({ message: "Invalid End Date" });
-    }
-
-    if (!request.userId) {
-        errors.push({ message: "Invalid User ID" });
-    }
-
-    if (errors.length > 0) {
-        return res.status(400).json({ messages: errors });
-    }
 
     var booking = new Booking(request.userId, id, request.dateFrom, request.dateTo);
 
     booking.getBookingByID(id, (err, res) => {
+        if (err) {
+            return res.status(400).json({ msg: err });
+        } else {
+            return res.json(result);
+        }
+    });
+});
+
+router.get("/:rentalid/:userid", (req, res) => {
+    const rentalId = req.params.rentalid;
+    const userId = req.params.userid;
+    ret = new Booking();
+
+    Booking.getBookingByUser(userId, rentalId, (err, result) => {
         if (err) {
             return res.status(400).json({ msg: err });
         } else {

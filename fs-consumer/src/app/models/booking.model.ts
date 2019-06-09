@@ -3,15 +3,19 @@ import { mysql } from '../databases/db';
 export class Booking {
     rentalID: number;
     userID: number;
-    dateFrom: Date;
-    dateTo: Date;
-    constructor(propID, userID, dateFrom, dateTo) {
-        this.rentalID = propID;
-        this.userID = userID;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-        // this.date_created = new Date();
+    dateFrom: string;
+    dateTo: string;
+
+    constructor() {
     }
+
+    // static convertDateToJS(sqldate: string) {
+    //     return new Date(Date.parse(sqldate.replace(/[-]/g, '/') ));
+    // }
+
+    // static convertDateToSQL(date: Date) {
+    //     date.toISOString().slice(0, 19).replace('T', ' ');
+    // }
 
 // createBooking(result) {
 // mysql.query('INSERT INTO booking set ?', this, function(err, results) {

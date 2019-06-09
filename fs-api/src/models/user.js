@@ -15,7 +15,7 @@ createUser(result) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log("Users: ", results);
+            console.log("User: ", results);
             result(null, results);
         }
     });
@@ -39,8 +39,8 @@ static getUserByID(id, result) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log("User: ", res);
-            result(null, res);
+            console.log("User: ", res[0]);
+            result(null, res[0]);
         }
     });
 }
@@ -51,7 +51,7 @@ static getUserByEmail(email, result) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log("User: ", res);
+            console.log("user's User (does not throw error in getting user): ", res[0]);
             result(null, res[0]);
         }
     });
