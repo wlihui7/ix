@@ -11,6 +11,7 @@ function App() {
           <input type="text" name="email"></input> <br/>
           Password: <br/>
           <input type="text" name="password"></input> <br/>
+          <input type="submit" value="Submit"></input>
         </form>
       </header>
     </div>
